@@ -43,6 +43,7 @@ db.once('open', () => {
   Record.create(recordData)
     .then(() => {
       console.log('Add record seeder done!')
+      return db.close()
     })
     .catch((err) => console.error(err))
 })

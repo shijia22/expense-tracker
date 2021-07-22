@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars')
 
 const app = express()
 const Record = require('./models/record')
+const Category = require('./models/category')
 
 mongoose.connect('mongodb://localhost/money', {
   useNewUrlParser: true,
@@ -29,6 +30,13 @@ app.get('/', (req, res) => {
   Record.find()
     .lean()
     .then((records) => res.render('index', { records })) // 將資料傳給 index 樣板
+    .catch((error) => console.error(error)) // 錯誤處理
+})
+
+app.get('/', (req, res) => {
+  Category.find()
+    .lean()
+    .then((categorys) => res.render('index', { categorys })) // 將資料傳給 index 樣板
     .catch((error) => console.error(error)) // 錯誤處理
 })
 
