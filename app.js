@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 
 const app = express()
+const Record = require('./models/record')
 
 mongoose.connect('mongodb://localhost/money', {
   useNewUrlParser: true,
@@ -25,7 +26,10 @@ app.set('view engine', 'hbs')
 
 // index
 app.get('/', (req, res) => {
-  res.render('index')
+  Record.find()
+    .lean()
+    .then((records) => res.render('index', { records })) // 將資料傳給 index 樣板
+    .catch((error) => console.error(error)) // 錯誤處理
 })
 
 // port
