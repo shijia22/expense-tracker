@@ -1,13 +1,11 @@
-<div class="btn-group">
-  <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-類別  </button>
-  <ul class="dropdown-menu dropdown-menu-end">
-    {{#each categorys}}
-    <li><button class="dropdown-item" type="button">Action</button></li>
- <option value="{{ this.categoryName }}"selected >{{ this.categoryName }}</option>
-    {{/each}}
-  </ul>
-</div>
+    <form action="/" method="GET" class="my-3 my-4">
+      <select class="form-select" name="category" id="category-filter" data-value="{{category}}" aria-label="Default select">
+        <option value="" selected>全部類別</option>
+        {{#each categories}}
+        <option value="{{this._id}}">{{this.title}}</option>
+        {{/each}}
+      </select>
+    </form>
 
 <ul>
   {{#each records}}
