@@ -18,7 +18,14 @@
     <li>
       {{this.name}}/{{this.category}}/{{this.date}}/{{this.amount}}
     </li>
-    <a href="./records/{{ this._id }}/edit">edit</a>
+    <a href='./records/{{this._id}}/edit'>edit</a>
+    <form
+      action='./records/{{this._id}}/delete'
+      method='POST'
+      style='display: inline;'
+    >
+      <button type='submit'>delete</button>
+    </form>
   {{/each}}
 </ul>
 <div class='mb-3 row'>
