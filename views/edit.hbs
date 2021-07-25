@@ -1,4 +1,4 @@
-<form action='/records' method='POST'>
+<form action='/records/{{record._id}}?_method=PUT' method='POST'>
  <div class="mb-3 row">
       <div class="col-auto">*必填欄位</div>
       <div class="col-auto">請輸入你的支出</div>
@@ -12,7 +12,7 @@
         class='form-control'
         name='name'
         id='name'
-        value=''
+        value='{{record.name}}'
         required
       />
     </div>
@@ -21,36 +21,29 @@
   <div class='mb-3 row'>
     <label for='date' class='col-auto col-form-label'>日期*：</label>
     <div class='col-6'>
-      <input id='date' name='name' type='date' class='form-control' value=''/>
+      <input id='date' name='name' type='date' class='form-control' value='{{record.date}}'/>
     </div>
   </div>
   {{! 類別 }}
-  <div class='mb-3 row'>
-    <label for='category' class='col-auto col-form-label'>類別*：</label>
-    <div class='col-6'>
-      <select
-        class='form-select'
-        name='category'
-        id='category-filter'
-        data-value='{{ category }}'
-        aria-label='Default select'
-      >
-        <option value='' selected>全部類別</option>
-        {{#each categorys }}
-          <option value='{{this._id}}'>{{this.title}}</option>
-        {{/each}}
-      </select>
+    <div class="mb-3 row">
+      <label for="category" class="col-auto col-form-label">類別*：</label>
+      <div class="col-sm-10">
+        <select class="form-select" name="category" id="category" data-value="{{record.category}}" aria-label="Default select" required>
+          {{#each categorys}}
+          <option value="{{this._id}}">{{this.title}}</option>
+          {{/each}}
+        </select>
+      </div>
     </div>
-  </div>
 {{!-- 金額 --}}
   <div class='mb-3 row'>
     <label for='amount' class='col-auto col-form-label'>金額*：</label>
     <div class='col-6'>
-      <input id='amount' name='amount' type='number' class='form-control' />
+      <input id='amount' name='amount' type='number' class='form-control' value='{{record.amount}}'/>
     </div>
   </div>
   {{!-- 送出 --}}
   <div class='mb-3 row'>
-  <button type='submit' class='btn btn-primary col-6'>新增支出</button>
+  <button type='submit' class='btn btn-primary col-6'>送出</button>
   </div>
 </form>

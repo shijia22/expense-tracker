@@ -53,6 +53,15 @@ app.post('/', (req, res) => {
     .catch((error) => console.log(error))
 })
 
+// edit
+app.get('/todos/:id/edit', (req, res) => {
+  const id = req.params.id
+  return Record.findById(id)
+    .lean()
+    .then((record) => res.render('edit', { record }))
+    .catch((error) => console.log(error))
+})
+
 // port
 app.listen(3000, () => {
   console.log('App is running on http://localhost:3000')
