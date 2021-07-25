@@ -1,4 +1,56 @@
-<form action="/records" method="POST">
-  <input type="text" placeholder="name" name="name">
-  <button type="submit">Create</button>
+<form action='/records' method='POST'>
+ <div class="mb-3 row">
+      <div class="col-auto">*必填欄位</div>
+      <div class="col-auto">請輸入你的支出</div>
+    </div>
+  {{! 支出名稱 }}
+  <div class='mb-3 row'>
+    <label for='name' class='col-auto col-form-label'>名稱*：</label>
+    <div class='col-6'>
+      <input
+        type='text'
+        class='form-control'
+        name='name'
+        id='name'
+        value=''
+        required
+      />
+    </div>
+  </div>
+  {{! date }}
+  <div class='mb-3 row'>
+    <label for='date' class='col-auto col-form-label'>日期*：</label>
+    <div class='col-6'>
+      <input id='date' name='name' type='date' class='form-control' />
+    </div>
+  </div>
+  {{! 類別 }}
+  <div class='mb-3 row'>
+    <label for='category' class='col-auto col-form-label'>類別*：</label>
+    <div class='col-6'>
+      <select
+        class='form-select'
+        name='category'
+        id='category-filter'
+        data-value='{{ categorys }}'
+        aria-label='Default select'
+      >
+        <option value='' selected>全部類別</option>
+        {{#each categorys }}
+          <option value='{{this._id}}'>{{this.title}}</option>
+        {{/each}}
+      </select>
+    </div>
+  </div>
+{{!-- 金額 --}}
+  <div class='mb-3 row'>
+    <label for='amount' class='col-auto col-form-label'>金額*：</label>
+    <div class='col-6'>
+      <input id='amount' name='amount' type='number' class='form-control' />
+    </div>
+  </div>
+  {{!-- 送出 --}}
+  <div class='mb-3 row'>
+  <button type='submit' class='btn btn-primary col-6'>新增支出</button>
+  </div>
 </form>

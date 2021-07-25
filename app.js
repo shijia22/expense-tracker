@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
 
 // create
 app.get('/records/new', (req, res) => {
-  return res.render('new', { categorys })
+  return res.render('new')
 })
 
 app.post('/', (req, res) => {
