@@ -24,7 +24,8 @@
 - jQuery v5.0.2
 - popperjs v2.9.2
 - mongoose v5.13.3
-- method-override
+- method-override v3.0.0
+- body-parser v1.19.0
 
 ## 安裝與執行步驟
 
