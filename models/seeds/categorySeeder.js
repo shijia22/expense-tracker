@@ -20,7 +20,7 @@ mongoose.connect('mongodb://localhost/money', {
 const db = mongoose.connection
 
 db.once('open', () => {
-  Category.create(categorySeedData).then(() => {
+  Category.create(categoryData).then(() => {
     console.log('Category seeder done.')
     return db.close()
   })
