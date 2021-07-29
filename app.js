@@ -65,7 +65,7 @@ app.get('/records/:id/edit', (req, res) => {
 })
 
 // delete
-app.post('/records/:id/delete', (req, res) => {
+app.delete('/records/:id', (req, res) => {
   const id = req.params.id
   return Record.findById(id)
     .then((record) => record.remove())
