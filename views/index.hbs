@@ -12,24 +12,49 @@
     {{/each}}
   </select>
 </form>
+<div class='row justify-content-center'>
+  <ul class='list-group list-group-flush'>
+    {{#each records}}
+      <li class='list-group-item'>
+        <div class='d-flex justify-content-between'>
+          <div class='records col-10 d-flex justify-content-between'>
+            <div class='category col-2 flex-column'>
+              <i class='fas fa-home'></i>
+              {{this.category}}
+            </div>
+            <div class='record-detail col-8'>
+              {{this.name}}
+              <div class='record-data'>
+                {{this.date}}
+              </div>
+            </div>
+            <div class="record-money col-2">
+              {{this.amount}}
+            </div>
+          </div>
+          <div class='col-auto'>
+            <a
+              href='./records/{{this._id}}/edit'
+              class='btn btn-outline-success'
+            >edit</a>
+            <form
+              action='./records/{{this._id}}?_method=DELETE'
+              method='POST'
+              style='display: inline;'
+            >
+              <button
+                type='button'
+                class='btn btn-outline-danger'
+                onclick="return confirm('確定要刪除嗎？')"
+              >delete</button>
+            </form>
+          </div>
+        </div>
+      </li>
+    {{/each}}
+  </ul>
 
-<ul>
-  {{#each records}}
-    <li>
-      {{this.name}}/{{this.category}}/{{this.date}}/{{this.amount}}
-    </li>
-    <a href='./records/{{this._id}}/edit'>edit</a>
-    <form
-      action='./records/{{this._id}}?_method=DELETE'
-      method='POST'
-      style='display: inline;'
-    >
-      <button type='submit'>delete</button>
-    </form>
-  {{/each}}
-</ul>
-<div class='mb-3 row'>
-  <a href='./records/new'>
-    <button type='submit' class='btn btn-primary col-6'>新增支出</button>
-  </a>
+  <div class='mb-3 row' style='width: 200px;'>
+    <a href='./records/new' class='btn btn-outline-primary'>新增支出</a>
+  </div>
 </div>
