@@ -7,12 +7,13 @@
     aria-label='Default select'
   >
     <option value='' selected>全部類別</option>
-    {{#each categorys}}
+    {{#each categories}}
       <option value='{{this._id}}'>{{this.title}}</option>
     {{/each}}
   </select>
 </form>
 <div class='row justify-content-center'>
+  {{ this.totalAmount }}
   <ul class='list-group list-group-flush'>
     {{#each records}}
       <li class='list-group-item'>
@@ -20,7 +21,7 @@
           <div class='records col-10 d-flex justify-content-between'>
             <div class='category col-2 flex-column'>
               <i class='fas fa-home'></i>
-              {{this.category}}
+              {{this.categoryData}}
             </div>
             <div class='record-detail col-8'>
               {{this.name}}

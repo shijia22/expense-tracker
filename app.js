@@ -31,18 +31,32 @@ app.use(methodOverride('_method'))
 
 // index
 app.get('/', (req, res) => {
-  Record.find()
-    .lean()
-    .then((records) => res.render('index', { records })) // 將資料傳給 index 樣板
-    .catch((error) => console.error(error)) // 錯誤處理
-})
+  const categoryData = []
+  const records = []
+  totalAmount = 0
 
-app.get('/', (req, res) => {
   Category.find()
     .lean()
-    .then((categorys) => res.render('index', { categorys })) // 將資料傳給 index 樣板
-    .catch((error) => console.error(error)) // 錯誤處理
+    .then(category => {
+      categoryData.push(...category)
+      Record.find()
+        .lean()
+        .then(record => {
+          records.push(...record)
+          records.forEach(record => {
+            const category = categoryData.find(
+              (category) => category.name === record.category
+            )
+            record.icon = category.icon
+            totalAmount += record.amount
+          })
+          res.render('index', { records, categoryData, totalAmount })
+        })
+        .catch(error => console.log(error))
+    })
+    .catch(error => console.log(error))
 })
+
 
 // create
 app.get('/records/new', (req, res) => {

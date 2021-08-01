@@ -17,8 +17,12 @@ mongoose.connect('mongodb://localhost/money', {
 const db = mongoose.connection
 
 db.once('open', () => {
-  Category.create(categoryData).then(() => {
-    console.log('Category seeder done.')
-    db.close()
-  })
+  Category.create(categoryData)
+    .then(() => {
+      console.log('Category seeder done.')
+      db.close()
+    })
+    .then(() => {
+      console.log('database connection closed!')
+    })
 })
