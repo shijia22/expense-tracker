@@ -45,9 +45,9 @@ app.get('/', (req, res) => {
           records.push(...record)
           records.forEach(record => {
             const category = categoryData.find(
-              (category) => category.name === record.category
+              (category) => category.title === record.category
             )
-            record.icon = category.icon
+            // record.icon = category.icon
             totalAmount += record.amount
           })
           res.render('index', { records, categoryData, totalAmount })
